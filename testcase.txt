@@ -1,0 +1,22 @@
+TEST CASE 1
+
+Input:
+Available = [3,3,2]
+
+Expected Result:
+SAFE
+
+Actual Result:
+SAFE
+
+
+TEST CASE 2
+
+Input:
+Available = [0,0,0]
+
+Expected Result:
+UNSAFE
+
+Actual Result:
+UNSAFE
