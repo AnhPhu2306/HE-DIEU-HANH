@@ -1,0 +1,55 @@
+from banker import is_safe
+
+def request_resources(processes, available, max_need, allocation, process_id, request):
+    n = len(processes)
+    m = len(available)
+
+    need = [[max_need[i][j] - allocation[i][j] for j in range(m)] for i in range(n)]
+
+    if any(request[j] > need[process_id][j] for j in range(m)):
+        print("Error: Request exceeds maximum need")
+        return False
+
+    if any(request[j] > available[j] for j in range(m)):
+        print("Resources not available")
+        return False
+
+    for j in range(m):
+        available[j] -= request[j]
+        allocation[process_id][j] += request[j]
+
+    safe, seq = is_safe(processes, available, max_need, allocation)
+
+    if safe:
+        print("Request granted")
+        print("Safe sequence:", seq)
+        return True
+    else:
+        print("Request denied")
+        return False
+
+
+if __name__ == "__main__":
+    processes = [0, 1, 2, 3, 4]
+    available = [3, 3, 2]
+
+    max_need = [
+        [7, 5, 3],
+        [3, 2, 2],
+        [9, 0, 2],
+        [2, 2, 2],
+        [4, 3, 3]
+    ]
+
+    allocation = [
+        [0, 1, 0],
+        [2, 0, 0],
+        [3, 0, 2],
+        [2, 1, 1],
+        [0, 0, 2]
+    ]
+
+    request = [1, 0, 2]
+    process_id = 1
+
+    request_resources(processes, available, max_need, allocation, process_id, request)
