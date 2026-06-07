@@ -1,29 +1,26 @@
-# file nhap du lieu cho thuat toan Banker
+# Nhap du lieu cho thuat toan Banker
 
 
 def nhap_du_lieu():
-    print("===== NHAP DU LIEU HE THONG =====")
+    print("===== NHAP DU LIEU =====")
 
-    so_p = int(input("Nhap so tien trinh: "))
-    so_r = int(input("Nhap so tai nguyen: "))
+    so_p = int(input("So tien trinh: "))
+    so_r = int(input("So tai nguyen: "))
 
-    # Available: tai nguyen con trong he thong
-    print("\nNhap Available (", so_r, "so, cach nhau bang dau cach):")
+    print("Nhap Available (" + str(so_r) + " so, cach nhau bang dau cach):")
     available = list(map(int, input().split()))
 
-    # Max: so tai nguyen toi da ma moi tien trinh can
     print("\nNhap ma tran Max:")
     max_matrix = []
     for i in range(so_p):
-        print("P", i, end=": ")
+        print("P" + str(i) + ":", end=" ")
         dong = list(map(int, input().split()))
         max_matrix.append(dong)
 
-    # Allocation: tai nguyen da cap cho tung tien trinh
     print("\nNhap ma tran Allocation:")
     allocation = []
     for i in range(so_p):
-        print("P", i, end=": ")
+        print("P" + str(i) + ":", end=" ")
         dong = list(map(int, input().split()))
         allocation.append(dong)
 
@@ -31,7 +28,7 @@ def nhap_du_lieu():
 
 
 def du_lieu_mau():
-    # vi du trong sach: 5 tien trinh, 3 tai nguyen
+    # Vi du trong sach giao trinh: 5 tien trinh, 3 loai tai nguyen
     so_p = 5
     so_r = 3
     available = [3, 3, 2]
