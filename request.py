@@ -11,13 +11,13 @@ def yeu_cau_tai_nguyen(so_p, available, max_matrix, allocation, id_tien_trinh, y
     # Buoc 1: yeu cau khong duoc lon hon Need
     for j in range(so_r):
         if yeu_cau[j] > need[id_tien_trinh][j]:
-            print("Loi: Yeu cau lon hon Need!")
+            print("Ly do: Yeu cau lon hon Need cua tien trinh!")
             return False
 
     # Buoc 2: yeu cau khong duoc lon hon Available
     for j in range(so_r):
         if yeu_cau[j] > available[j]:
-            print("Loi: Khong du tai nguyen!")
+            print("Ly do: Khong du tai nguyen trong he thong!")
             return False
 
     # Luu lai de phuc hoi neu tu choi
@@ -33,7 +33,7 @@ def yeu_cau_tai_nguyen(so_p, available, max_matrix, allocation, id_tien_trinh, y
     an_toan, chuoi = kiem_tra_an_toan(so_p, available, max_matrix, allocation)
 
     if an_toan == True:
-        print("Chap nhan yeu cau!")
+        print("He thong van an toan sau khi cap.")
         print("Chuoi an toan:", chuoi)
         return True
     else:
@@ -41,5 +41,5 @@ def yeu_cau_tai_nguyen(so_p, available, max_matrix, allocation, id_tien_trinh, y
         for j in range(so_r):
             available[j] = available_cu[j]
             allocation[id_tien_trinh][j] = allocation_cu[j]
-        print("Tu choi yeu cau! (He thong se khong an toan)")
+        print("Ly do: Cap tai nguyen se lam he thong khong an toan!")
         return False

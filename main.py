@@ -33,27 +33,47 @@ def main():
     else:
         print("Ket qua: HE THONG KHONG AN TOAN (UNSAFE)")
 
-    # ---  Yeu cau tai nguyen (neu muon) ---
+    # --- Yeu cau tai nguyen (neu muon) ---
     print("\n===== YEU CAU TAI NGUYEN =====")
     co_yc = input("Ban co muon yeu cau tai nguyen khong? (y/n): ")
 
     if co_yc == "y" or co_yc == "Y":
-        id_tt = int(input("Nhap ID tien trinh (0 den " + str(so_p - 1) + "): "))
-        print("Nhap yeu cau (" + str(so_r) + " so, cach nhau bang dau cach):")
-        yeu_cau = list(map(int, input().split()))
+        try:
+            id_tt = int(input("Nhap ID tien trinh (0 den " + str(so_p - 1) + "): "))
 
-        print("\nDang xu ly yeu cau cua P" + str(id_tt) + ":", yeu_cau)
-        ket_qua = yeu_cau_tai_nguyen(so_p, available, max_matrix, allocation, id_tt, yeu_cau)
+            if id_tt < 0 or id_tt >= so_p:
+                print("Loi: ID tien trinh khong hop le!")
+            else:
+                print("Nhap yeu cau (" + str(so_r) + " so, cach nhau bang dau cach):")
+                dong_nhap = input().split()
 
-        if ket_qua == True:
-            need = tinh_need(max_matrix, allocation)
-            print("\n===== SAU KHI CAP TAI NGUYEN =====")
-            hien_thi_tat_ca(available, max_matrix, allocation, need)
+                if len(dong_nhap) != so_r:
+                    print("Loi: Phai nhap dung " + str(so_r) + " so!")
+                else:
+                    yeu_cau = []
+                    for x in dong_nhap:
+                        yeu_cau.append(int(x))
+
+                    print("\nDang xu ly yeu cau cua P" + str(id_tt) + ":", yeu_cau)
+                    ket_qua = yeu_cau_tai_nguyen(
+                        so_p, available, max_matrix, allocation, id_tt, yeu_cau
+                    )
+
+                    print("\n===== KET QUA YEU CAU =====")
+                    if ket_qua == True:
+                        print("=> THUC HIEN DUOC (Chap nhan yeu cau)")
+                        need = tinh_need(max_matrix, allocation)
+                        print("\n===== SAU KHI CAP TAI NGUYEN =====")
+                        hien_thi_tat_ca(available, max_matrix, allocation, need)
+                    else:
+                        print("=> KHONG THUC HIEN DUOC (Tu choi yeu cau)")
+
+        except ValueError:
+            print("Loi: Ban nhap sai dinh dang so!")
 
     print("\n===== HET CHUONG TRINH =====")
+    input("Nhan Enter de thoat...")
 
 
 if __name__ == "__main__":
     main()
-#py main.py      # chạy console
-#py gui.py       # chạy giao diện
