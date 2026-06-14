@@ -46,4 +46,9 @@ def du_lieu_mau():
         [2, 1, 1],
         [0, 0, 2],
     ]
+    # Tinh available = instances - tong(allocation)
+    available = []
+    for j in range(so_r):
+        sum_alloc = sum(allocation[i][j] for i in range(so_p))
+        available.append(instances[j] - sum_alloc)
     return so_p, so_r, available, max_matrix, allocation
